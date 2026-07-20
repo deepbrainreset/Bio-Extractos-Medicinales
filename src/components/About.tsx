@@ -34,7 +34,7 @@ export default function About() {
               Excelencia Médica en <span className="text-bio-green">Chubut</span>
             </h2>
             <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-              En la Fundación Bio Extractos Medicinales, nos dedicamos a proveer acceso seguro, legal y de alta calidad a terapias basadas en cannabis. Nuestro compromiso es mejorar la calidad de vida de nuestros socios a través de productos estandarizados y un acompañamiento profesional continuo.
+              En la Fundación Bioextractos Medicinales, nos dedicamos a proveer acceso seguro, legal y de alta calidad a terapias basadas en cannabis. Nuestro compromiso es mejorar la calidad de vida de nuestros socios a través de productos estandarizados y un acompañamiento profesional continuo.
             </p>
             
             <div className="space-y-8">
@@ -61,7 +61,7 @@ export default function About() {
           >
             <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 relative">
               <img 
-                src="https://picsum.photos/seed/indoor-grow/800/1000" 
+                src="https://res.cloudinary.com/dw4k14vmn/image/upload/v1784514650/Imagen_generada_1_2_zbzmgd.png" 
                 alt="Instalaciones de cultivo indoor tecnificado de cannabis medicinal en Chubut" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

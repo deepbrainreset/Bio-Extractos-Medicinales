@@ -14,8 +14,8 @@ export default function MedicalTracking() {
           >
             <div className="aspect-square rounded-3xl overflow-hidden border border-white/10 relative">
               <img 
-                src="https://picsum.photos/seed/medical-consultation/800/800" 
-                alt="Seguimiento médico profesional y tratamiento de cannabis medicinal en Comodoro Rivadavia" 
+                src="https://res.cloudinary.com/dw4k14vmn/image/upload/v1784508469/Gemini_Generated_Image_yoyns8yoyns8yoyn_mnmsu0.png" 
+                alt="Paciente de la fundación con tratamiento de cannabis medicinal para dolores articulares" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />

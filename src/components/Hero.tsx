@@ -117,8 +117,8 @@ export default function Hero() {
 
       {/* Content Overlay - Fades in at the end */}
       <div className="hero-content opacity-0 translate-y-10 relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-[20vh] md:mt-[25vh]">
-        <h1 className="text-4xl md:text-6xl font-extrabold text-zinc-900 tracking-tight mb-4">
-          Fundación <span className="text-bio-green">Bio Extractos</span>
+        <h1 className="text-4xl md:text-6xl font-extrabold text-zinc-900 tracking-tight mb-4 lowercase">
+          fundación <span className="text-bio-green">bioextractos medicinales</span>
         </h1>
         <p className="max-w-2xl mx-auto text-base md:text-lg text-zinc-700 font-medium mb-8">
           Acceso legal, seguro y estandarizado al cannabis medicinal en Comodoro Rivadavia, Chubut. Acompañamiento profesional y cultivos de grado médico.

@@ -1,4 +1,4 @@
-import { Leaf, Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -8,18 +8,23 @@ export default function Footer() {
           
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-6">
-              <Leaf className="w-8 h-8 text-bio-green" />
-              <span className="text-xl font-bold tracking-tight text-white">
-                Bio Extractos
+            <div className="flex items-center gap-2.5 mb-6">
+              <img 
+                src="https://res.cloudinary.com/dw4k14vmn/image/upload/v1784507584/1000075422_jp4uoc.webp" 
+                alt="Logo Bioextractos Medicinales" 
+                className="w-9 h-9 object-contain rounded-full border border-white/10"
+                referrerPolicy="no-referrer"
+              />
+              <span className="text-xl font-bold tracking-tight text-white lowercase">
+                bioextractos medicinales
               </span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Fundación Bio Extractos Medicinales. Acceso legal, seguro y estandarizado al cannabis medicinal en la Patagonia.
+              Fundación Bioextractos Medicinales. Acceso legal, seguro y estandarizado al cannabis medicinal en la Patagonia.
             </p>
             <div className="bg-black border border-white/10 p-4 rounded-xl">
               <p className="text-xs text-gray-500 font-mono mb-1">PERSONERÍA JURÍDICA</p>
-              <p className="text-sm text-white font-mono">CUIT: 30-71829384-1</p>
+              <p className="text-sm text-white font-mono">CUIT: 30-71925788-3</p>
               <p className="text-sm text-white font-mono">Res. IGJ N° 452/23</p>
             </div>
           </div>
@@ -49,7 +54,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-bio-green shrink-0" />
-                <span className="text-gray-400 text-sm">info@bioextractos.org.ar</span>
+                <span className="text-gray-400 text-sm">Bioextractosmed@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -65,7 +70,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-500 text-sm text-center md:text-left">
-            &copy; {new Date().getFullYear()} Fundación Bio Extractos Medicinales. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} Fundación Bioextractos Medicinales. Todos los derechos reservados.
           </p>
           <div className="flex gap-4">
             <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">Términos y Condiciones</a>

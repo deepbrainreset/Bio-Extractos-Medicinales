@@ -10,7 +10,7 @@ export default function Blog() {
       date: "24 Jun, 2026",
       author: "Dra. Sofía Albarracín",
       readTime: "5 min de lectura",
-      image: "https://picsum.photos/seed/reprocann-guide/600/400"
+      image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1784515306/Imagen_generada_1_4_cjvkhw.png"
     },
     {
       title: "Cannabis Medicinal en Chubut: Qué establece la Ley Provincial 790/24",
@@ -19,7 +19,7 @@ export default function Blog() {
       date: "10 Jun, 2026",
       author: "Abog. Marcos Juárez",
       readTime: "7 min de lectura",
-      image: "https://picsum.photos/seed/chubut-law/600/400"
+      image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1784513939/Imagen_generada_1_1_bvv3gq.png"
     },
     {
       title: "Beneficios del Cultivo Indoor Tecnificado y Extractos Full Spectrum",
@@ -28,7 +28,7 @@ export default function Blog() {
       date: "28 May, 2026",
       author: "Ing. Agr. Lucas Varela",
       readTime: "6 min de lectura",
-      image: "https://picsum.photos/seed/indoor-grow-blog/600/400"
+      image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1784508483/Gemini_Generated_Image_1gp3d61gp3d61gp3_hedmhb.png"
     }
   ];
 

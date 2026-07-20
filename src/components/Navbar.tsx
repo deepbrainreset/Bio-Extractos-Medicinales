@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Leaf } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function Navbar() {
@@ -27,10 +27,15 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black/90 backdrop-blur-md border-b border-white/10 py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Leaf className="w-8 h-8 text-bio-green" />
-            <span className="text-xl font-bold tracking-tight text-white">
-              Bio Extractos
+          <div className="flex items-center gap-2.5">
+            <img 
+              src="https://res.cloudinary.com/dw4k14vmn/image/upload/v1784507584/1000075422_jp4uoc.webp" 
+              alt="Logo Bioextractos Medicinales" 
+              className="w-9 h-9 object-contain rounded-full border border-white/10"
+              referrerPolicy="no-referrer"
+            />
+            <span className="text-xl font-bold tracking-tight text-white lowercase">
+              bioextractos medicinales
             </span>
           </div>
 
