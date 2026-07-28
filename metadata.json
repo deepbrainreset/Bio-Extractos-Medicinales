@@ -1,5 +1,6 @@
 {
-  "name": "Fundación Bioextractos Medicinales",
-  "description": "Acceso legal y seguro al cannabis medicinal en Comodoro Rivadavia, Chubut.",
-  "requestFramePermissions": []
+  "name": "Asociación Civil Bio Extractos Medicinales",
+  "description": "Información, acompañamiento y comunidad para un acceso responsable al cannabis medicinal en Chubut.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
