@@ -18,6 +18,16 @@ export const ORGANIZATION_CONFIG = {
   telefono: "+54 297 459-0123",
   horariosAtencion: "Lunes a Viernes de 09:00 a 17:00 hs",
 
+  // Datos oficiales de Subscripción y Pago de Cuota Social
+  subscripcionBancaria: {
+    alias: "asc.extractos.med",
+    cvu: "0000003100005829621502",
+    nombreTitular: "ASOCIACION CIVIL BIO EXTRACTOS ASOCIACION CIVIL BIO EXTRACTOS",
+    cuit: "30-71889201-4",
+    banco: "Mercado Pago / CVU Institucional Argentina",
+    montoCuotaSocial: "ARS $10.000",
+  },
+
   // Plazos configurables de retención y conservación de datos
   plazosRetencion: {
     solicitudesIncompletasOuRechazadas: "6 meses desde la notificación de la resolución",

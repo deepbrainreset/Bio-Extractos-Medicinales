@@ -15,7 +15,9 @@ import {
   Edit3,
   Building2,
   FileSpreadsheet,
-  Info
+  Info,
+  Copy,
+  Check
 } from 'lucide-react';
 import { useApplication } from '../context/ApplicationContext';
 import { ReprocannStatus, MedicalIndicationStatus, AdherentApplication } from '../types';
@@ -34,6 +36,23 @@ export default function AdherentFormModal({ isOpen, onClose, onOpenTrackingModal
   const [step, setStep] = useState<number>(1);
   const [submittedApp, setSubmittedApp] = useState<AdherentApplication | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
+
+  const [copiedAlias, setCopiedAlias] = useState(false);
+  const [copiedCvu, setCopiedCvu] = useState(false);
+
+  const bankData = ORGANIZATION_CONFIG.subscripcionBancaria;
+
+  const handleCopyAlias = () => {
+    navigator.clipboard.writeText(bankData.alias);
+    setCopiedAlias(true);
+    setTimeout(() => setCopiedAlias(false), 2000);
+  };
+
+  const handleCopyCvu = () => {
+    navigator.clipboard.writeText(bankData.cvu);
+    setCopiedCvu(true);
+    setTimeout(() => setCopiedCvu(false), 2000);
+  };
 
   // Form State
   const [formData, setFormData] = useState({
@@ -970,9 +989,58 @@ export default function AdherentFormModal({ isOpen, onClose, onOpenTrackingModal
                 </div>
                 <p className="text-gray-300 text-[11px] leading-relaxed print:text-gray-800">
                   1. <strong className="text-white print:text-black">Revisión Humana:</strong> La Comisión Directiva evaluará la documentación adjunta. <br />
-                  2. <strong className="text-white print:text-black">Sin Cobro Inmediato:</strong> El enlace de pago de la cuota social está <strong className="text-amber-300 print:text-black">deshabilitado</strong> hasta la aprobación previa por Acta de Comisión Directiva. <br />
+                  2. <strong className="text-white print:text-black">Pasarela e Información de Pago:</strong> Cuando la solicitud sea aprobada, podés realizar el abono mediante transferencia bancaria o Mercado Pago. Guardá los datos bancarios para tu suscripción. <br />
                   3. <strong className="text-white print:text-black">Notificación:</strong> Recibirás un correo electrónico con la resolución del trámite sin exponer datos médicos confidenciales.
                 </p>
+              </div>
+
+              {/* Official Subscription Bank Data Box */}
+              <div className="bg-slate-900 border border-emerald-500/70 rounded-2xl p-4 max-w-lg mx-auto text-left space-y-3 print:border-black print:bg-white">
+                <div className="flex items-center justify-between border-b border-emerald-900/40 pb-2">
+                  <span className="text-xs font-bold text-emerald-400 print:text-black flex items-center gap-1.5">
+                    <Building2 className="w-4 h-4" /> Datos de Subscripción y Pago Directo
+                  </span>
+                  <span className="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800 font-mono print:hidden">
+                    CUENTA INSTITUCIONAL
+                  </span>
+                </div>
+
+                <div className="space-y-2 text-xs font-mono">
+                  <div className="flex items-center justify-between p-2 bg-slate-950 rounded-xl border border-emerald-900/40">
+                    <div>
+                      <span className="text-[10px] text-gray-400 font-sans block">ALIAS OFICIAL:</span>
+                      <strong className="text-emerald-300 text-sm tracking-wider">{bankData.alias}</strong>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleCopyAlias}
+                      className="px-2.5 py-1.5 bg-emerald-800 hover:bg-emerald-700 text-white text-[10px] font-sans font-bold rounded-lg flex items-center gap-1 print:hidden"
+                    >
+                      {copiedAlias ? <Check className="w-3 h-3 text-emerald-300" /> : <Copy className="w-3 h-3" />}
+                      <span>{copiedAlias ? '¡Copiado!' : 'Copiar'}</span>
+                    </button>
+                  </div>
+
+                  <div className="flex items-center justify-between p-2 bg-slate-950 rounded-xl border border-emerald-900/40">
+                    <div>
+                      <span className="text-[10px] text-gray-400 font-sans block">CVU INTERBANCARIO:</span>
+                      <strong className="text-white text-xs tracking-widest">{bankData.cvu}</strong>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleCopyCvu}
+                      className="px-2.5 py-1.5 bg-emerald-800 hover:bg-emerald-700 text-white text-[10px] font-sans font-bold rounded-lg flex items-center gap-1 print:hidden"
+                    >
+                      {copiedCvu ? <Check className="w-3 h-3 text-emerald-300" /> : <Copy className="w-3 h-3" />}
+                      <span>{copiedCvu ? '¡Copiado!' : 'Copiar'}</span>
+                    </button>
+                  </div>
+
+                  <div className="text-[11px] font-sans text-gray-300 pt-1 space-y-0.5">
+                    <div>Titular: <strong className="text-white">{bankData.nombreTitular}</strong></div>
+                    <div>CUIT: <strong className="text-white">{bankData.cuit}</strong></div>
+                  </div>
+                </div>
               </div>
 
               {/* Action Buttons */}

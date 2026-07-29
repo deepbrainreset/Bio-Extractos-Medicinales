@@ -1235,26 +1235,106 @@ export default function AdminPanel() {
               </button>
             </div>
 
-            <div className="bg-slate-900 p-4 rounded-2xl text-xs space-y-2 border border-white/5">
-              <div className="grid grid-cols-2 gap-2">
-                <div><span className="text-gray-400">DNI:</span> <strong className="text-white font-mono">{maskDni(selectedApp.dni)}</strong></div>
-                <div><span className="text-gray-400">Localidad:</span> <strong className="text-white">{selectedApp.localidad}</strong></div>
-                <div><span className="text-gray-400">Email:</span> <span className="text-emerald-400">{selectedApp.email}</span></div>
-                <div><span className="text-gray-400">Teléfono:</span> <span className="text-white">{selectedApp.telefono}</span></div>
+            {/* THREE THEMATIC VISUAL BLOCKS FOR AGENCY REVIEW */}
+            <div className="space-y-4">
+              
+              {/* BLOCK 1: BUROCRÁTICO & ADMINISTRATIVO */}
+              <div className="bg-slate-900 p-4 rounded-2xl border-2 border-sky-600/60 space-y-3 relative overflow-hidden">
+                <div className="flex items-center justify-between border-b border-sky-800/40 pb-2">
+                  <span className="font-extrabold text-sky-300 text-xs flex items-center gap-2">
+                    🏢 BLOQUE 1 DE 3: TÓPICO BUROCRÁTICO & ADMINISTRATIVO
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-sky-400 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">
+                    FILIATORIO & CONTACTO
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div><span className="text-gray-400">Nombre Completo:</span> <strong className="text-white">{selectedApp.nombre} {selectedApp.apellido}</strong></div>
+                  <div><span className="text-gray-400">DNI:</span> <strong className="text-white font-mono">{maskDni(selectedApp.dni)}</strong></div>
+                  <div><span className="text-gray-400">Localidad / Prov:</span> <span className="text-white">{selectedApp.localidad}, {selectedApp.provincia}</span></div>
+                  <div><span className="text-gray-400">Domicilio:</span> <span className="text-white">{selectedApp.domicilio}</span></div>
+                  <div><span className="text-gray-400">Email:</span> <span className="text-sky-300 font-mono">{selectedApp.email}</span></div>
+                  <div><span className="text-gray-400">Teléfono:</span> <span className="text-white font-mono">{selectedApp.telefono}</span></div>
+                </div>
+
+                {/* Transition Divider 1 */}
+                <div className="pt-2 border-t border-sky-800/30 text-[10px] text-sky-400 font-mono font-bold text-center bg-sky-950/60 py-1 rounded-lg">
+                  ▲ FIN DE EVALUACIÓN BUROCRÁTICA ── COMIENZO DE EVALUACIÓN MÉDICA & REPROCANN ▼
+                </div>
               </div>
 
-              {/* Clinical details masked for non-medical roles */}
-              <div className="pt-2 border-t border-white/10">
-                <span className="text-gray-400 block font-semibold">Situación e Indicación Médica:</span>
+              {/* BLOCK 2: MÉDICO, SANITARIO & REPROCANN */}
+              <div className="bg-slate-900 p-4 rounded-2xl border-2 border-emerald-600/60 space-y-3 relative overflow-hidden">
+                <div className="flex items-center justify-between border-b border-emerald-800/40 pb-2">
+                  <span className="font-extrabold text-emerald-300 text-xs flex items-center gap-2">
+                    🩺 BLOQUE 2 DE 3: TÓPICO MÉDICO, SANITARIO & REPROCANN
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">
+                    SALUD & REPROCANN
+                  </span>
+                </div>
+
                 {activeRole === 'tesoreria' || activeRole === 'soporte' ? (
-                  <span className="text-rose-400 text-[11px] italic">[DATOS CLÍNICOS OCULTOS POR MÍNIMO PRIVILEGIO PARA {activeRole.toUpperCase()}]</span>
+                  <div className="p-3 bg-rose-950/40 rounded-xl border border-rose-800/50 text-[11px] text-rose-300 font-semibold text-center">
+                    🔒 DATOS CLÍNICOS Y SANITARIOS OCULTOS POR MÍNIMO PRIVILEGIO PARA {activeRole.toUpperCase()}
+                  </div>
                 ) : (
-                  <div className="text-white space-y-1 mt-1">
-                    <p>Médico: <strong>{selectedApp.nombreMedico || 'No especificado'}</strong> ({selectedApp.matriculaMedico || 'Sin matrícula'})</p>
-                    <p className="text-gray-300 text-[11px]">Acompañamiento: "{selectedApp.motivoSalud || 'No detallado'}"</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <span className="text-gray-400">Indicación Médica:</span>{' '}
+                      <strong className="text-white capitalize">
+                        {selectedApp.indicacionMedicaStatus === 'si' ? 'Presenta Orden Médica' : selectedApp.indicacionMedicaStatus === 'no' ? 'Sin orden médica' : 'Solicita orientación'}
+                      </strong>
+                    </div>
+                    <div>
+                      <span className="text-gray-400">Estatus REPROCANN:</span>{' '}
+                      <strong className="text-emerald-400 uppercase font-mono">{selectedApp.estadoReprocann}</strong>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <span className="text-gray-400">Médico Tratante:</span> <strong className="text-white">{selectedApp.nombreMedico || 'No especificado'}</strong> ({selectedApp.matriculaMedico || 'Sin matrícula'})
+                    </div>
+                    {selectedApp.numeroVinculacionReprocann && (
+                      <div className="sm:col-span-2 font-mono">
+                        <span className="text-gray-400">Código Vinculación REPROCANN:</span> <span className="text-emerald-300">{selectedApp.numeroVinculacionReprocann}</span>
+                      </div>
+                    )}
+                    <div className="sm:col-span-2 text-gray-300 text-[11px] bg-slate-950 p-2 rounded-xl border border-white/5">
+                      <span className="text-gray-500 font-semibold block">Acompañamiento Terapéutico:</span>
+                      "{selectedApp.motivoSalud || 'Información reservada Ley 25.326'}"
+                    </div>
                   </div>
                 )}
+
+                {/* Transition Divider 2 */}
+                <div className="pt-2 border-t border-emerald-800/30 text-[10px] text-emerald-400 font-mono font-bold text-center bg-emerald-950/60 py-1 rounded-lg">
+                  ▲ FIN DE EVALUACIÓN MÉDICA ── COMIENZO DE VERIFICACIÓN LEGAL & CONSENTIMIENTOS ▼
+                </div>
               </div>
+
+              {/* BLOCK 3: LEGAL, CONSENTIMIENTOS & PROTECCIÓN DE DATOS */}
+              <div className="bg-slate-900 p-4 rounded-2xl border-2 border-amber-600/60 space-y-3 relative overflow-hidden">
+                <div className="flex items-center justify-between border-b border-amber-800/40 pb-2">
+                  <span className="font-extrabold text-amber-300 text-xs flex items-center gap-2">
+                    ⚖️ BLOQUE 3 DE 3: TÓPICO LEGAL, CONSENTIMIENTOS & AUDITORÍA
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">
+                    LEY 25.326 & AUDIT TRAIL
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div><span className="text-gray-400">Firma Digital:</span> <strong className="text-amber-300">Aceptada por el Solicitante</strong></div>
+                  <div><span className="text-gray-400">Fecha Solicitud:</span> <span className="text-white">{selectedApp.fechaSolicitud}</span></div>
+                  <div><span className="text-gray-400">Consentimiento L25326:</span> <span className="text-emerald-400 font-semibold">CONFIRMADO</span></div>
+                  <div><span className="text-gray-400">IP Hash Audit:</span> <span className="text-amber-400 font-mono text-[10px]">{selectedApp.ipHash || '9a8f2e4c...'}</span></div>
+                </div>
+
+                <div className="pt-2 border-t border-amber-800/30 text-[10px] text-amber-400 font-mono font-bold text-center bg-amber-950/60 py-1 rounded-lg">
+                  ▲ FIN DE AUDITORÍA LEGAL ── EVALUACIÓN TÉCNICA Y NORMATIVA COMPLETA
+                </div>
+              </div>
+
             </div>
 
             <form onSubmit={handleSaveStatus} className="space-y-4">

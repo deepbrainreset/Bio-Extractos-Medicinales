@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { X, Search, ShieldCheck, CheckCircle2, Clock, AlertCircle, Lock, ExternalLink, FileText } from 'lucide-react';
+import { X, Search, ShieldCheck, CheckCircle2, Clock, AlertCircle, Lock, ExternalLink, FileText, CreditCard } from 'lucide-react';
 import { useApplication } from '../context/ApplicationContext';
 import { AdherentApplication } from '../types';
+import PaymentCheckoutModal from './PaymentCheckoutModal';
 
 interface StatusTrackerModalProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ export default function StatusTrackerModal({ isOpen, onClose }: StatusTrackerMod
   const [searchInput, setSearchInput] = useState(activeTrackingSearch || '');
   const [foundApp, setFoundApp] = useState<AdherentApplication | null>(null);
   const [searched, setSearched] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   if (!isOpen) return null;
 
@@ -136,11 +138,11 @@ export default function StatusTrackerModal({ isOpen, onClose }: StatusTrackerMod
                         La Comisión Directiva ha aprobado tu solicitud como Socio Adherente. Podés realizar el abono de tu cuota social asociativa mediante el enlace seguro de pasarela:
                       </p>
                       <button
-                        onClick={() => alert(`SISTEMA DE PAGO DIGITAL\n\nPasarela de Pago Habilitada para ${foundApp.nombre} ${foundApp.apellido}.\n\nSe abre la plataforma Mercado Pago / Transferencia bancaria oficial de la Asociación Civil.\n\nLink Generado: ${foundApp.linkPagoGenerado}`)}
+                        onClick={() => setIsCheckoutOpen(true)}
                         className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg flex items-center justify-center gap-2"
                       >
-                        <ExternalLink className="w-4 h-4" />
-                        Abonar Cuota Social Digital
+                        <CreditCard className="w-4 h-4" />
+                        Abonar Cuota Social Digital (Alias / CVU / Mercado Pago)
                       </button>
                     </div>
                   ) : (
@@ -167,6 +169,12 @@ export default function StatusTrackerModal({ isOpen, onClose }: StatusTrackerMod
         </div>
 
       </div>
+
+      <PaymentCheckoutModal 
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        application={foundApp}
+      />
     </div>
   );
 }

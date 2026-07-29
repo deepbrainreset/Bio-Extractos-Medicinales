@@ -16,7 +16,10 @@ import {
   Users,
   Compass,
   MessageSquareHeart,
-  Newspaper
+  Newspaper,
+  Copy,
+  Check,
+  Building2
 } from 'lucide-react';
 import { ORGANIZATION_CONFIG } from '../config/organization';
 import { useApplication } from '../context/ApplicationContext';
@@ -44,6 +47,23 @@ export default function SocialFee({
 
   const [searchInput, setSearchInput] = useState('');
   const [searchError, setSearchError] = useState<string | null>(null);
+
+  const [copiedAlias, setCopiedAlias] = useState(false);
+  const [copiedCvu, setCopiedCvu] = useState(false);
+
+  const bankData = ORGANIZATION_CONFIG.subscripcionBancaria;
+
+  const handleCopyAlias = () => {
+    navigator.clipboard.writeText(bankData.alias);
+    setCopiedAlias(true);
+    setTimeout(() => setCopiedAlias(false), 2000);
+  };
+
+  const handleCopyCvu = () => {
+    navigator.clipboard.writeText(bankData.cvu);
+    setCopiedCvu(true);
+    setTimeout(() => setCopiedCvu(false), 2000);
+  };
 
   const handleTestCheckoutSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -179,6 +199,88 @@ export default function SocialFee({
                 <UserMinus className="w-3.5 h-3.5 text-rose-400" />
                 <span>Solicitar Baja Societaria</span>
               </button>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Official Bank Subscription & Transfer Card */}
+        <div className="bg-slate-900 border-2 border-emerald-500/70 rounded-3xl p-6 sm:p-8 mb-14 shadow-2xl relative overflow-hidden">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            
+            <div className="space-y-3 max-w-xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-950 border border-emerald-700 rounded-full text-xs font-bold text-emerald-300">
+                <Building2 className="w-3.5 h-3.5 text-emerald-400" />
+                Datos Oficiales de Pago y Subscripción
+              </div>
+              
+              <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+                Cuenta Bancaria Institucional para Cuotas Sociales
+              </h3>
+              
+              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                Podés realizar la transferencia mensual directa utilizando el Alias o CVU oficial de la Asociación Civil Bio Extractos Medicinales.
+              </p>
+
+              <div className="text-xs text-gray-400 pt-1">
+                <span className="block"><strong className="text-gray-200">Titular:</strong> {bankData.nombreTitular}</span>
+                <span><strong className="text-gray-200">CUIT:</strong> {bankData.cuit} • <strong className="text-gray-200">Plataforma:</strong> {bankData.banco}</span>
+              </div>
+            </div>
+
+            {/* Alias & CVU Interactive Boxes with 1-Click Copy */}
+            <div className="w-full lg:w-auto shrink-0 space-y-3 bg-slate-950 p-4 rounded-2xl border border-emerald-900/60 font-mono text-xs">
+              
+              {/* Alias */}
+              <div className="flex items-center justify-between gap-4 p-2.5 bg-slate-900 rounded-xl border border-emerald-800/40">
+                <div>
+                  <span className="text-[10px] text-gray-400 font-sans block font-semibold">ALIAS OFICIAL</span>
+                  <span className="text-sm font-extrabold text-emerald-400 tracking-wider">{bankData.alias}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleCopyAlias}
+                  className="px-3 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-sans font-bold rounded-xl flex items-center gap-1.5 transition-all shrink-0 shadow-sm"
+                >
+                  {copiedAlias ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-white" />
+                      <span>¡Copiado!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copiar Alias</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* CVU */}
+              <div className="flex items-center justify-between gap-4 p-2.5 bg-slate-900 rounded-xl border border-emerald-800/40">
+                <div>
+                  <span className="text-[10px] text-gray-400 font-sans block font-semibold">CVU INTERBANCARIO</span>
+                  <span className="text-xs sm:text-sm font-extrabold text-white tracking-widest">{bankData.cvu}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleCopyCvu}
+                  className="px-3 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-sans font-bold rounded-xl flex items-center gap-1.5 transition-all shrink-0 shadow-sm"
+                >
+                  {copiedCvu ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-white" />
+                      <span>¡Copiado!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copiar CVU</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
             </div>
 
           </div>
