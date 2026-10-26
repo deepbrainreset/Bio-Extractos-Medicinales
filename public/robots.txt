@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bioextractos.org.ar/sitemap.xml
+Sitemap: https://bioextractosmedicinales.com/sitemap.xml
